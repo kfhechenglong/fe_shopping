@@ -16,7 +16,8 @@ export default {
       name: "ScorecardLogs",
       component: () => import("@/views/scorecard/logs/index.vue"),
       meta: {
-        title: "积分管理"
+        showParent: true,
+        title: "积分流水"
       }
     }
   ]

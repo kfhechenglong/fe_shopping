@@ -16,6 +16,7 @@ export default {
       name: "VipAddress",
       component: () => import("@/views/vip/address/index.vue"),
       meta: {
+        showParent: true,
         title: "会员信息"
       }
     },
@@ -24,6 +25,7 @@ export default {
       name: "VipInfo",
       component: () => import("@/views/vip/info/index.vue"),
       meta: {
+        showParent: true,
         title: "会员信息"
       }
     }

@@ -16,6 +16,7 @@ export default {
       name: "PayLogs",
       component: () => import("@/views/pay/logs/index.vue"),
       meta: {
+        showParent: true,
         title: "支付流水"
       }
     }

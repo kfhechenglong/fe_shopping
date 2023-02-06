@@ -16,6 +16,7 @@ export default {
       name: "orderInder",
       component: () => import("@/views/order/index.vue"),
       meta: {
+        showParent: true,
         title: "订单管理"
       }
     }
