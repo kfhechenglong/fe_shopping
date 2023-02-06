@@ -11,7 +11,7 @@ import { deviceDetection, useDark, useGlobal } from "@pureadmin/utils";
 import { h, reactive, computed, onMounted, defineComponent } from "vue";
 
 import navbar from "./components/navbar.vue";
-import tag from "./components/tag/index.vue";
+// import tag from "./components/tag/index.vue";
 import appMain from "./components/appMain.vue";
 import setting from "./components/setting/index.vue";
 import Vertical from "./components/sidebar/vertical.vue";
@@ -124,8 +124,8 @@ const layoutHeader = defineComponent({
             : null,
           !pureSetting.hiddenSideBar && layout.value.includes("horizontal")
             ? h(Horizontal)
-            : null,
-          h(tag)
+            : null
+          // h(tag)
         ]
       }
     );

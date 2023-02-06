@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import Search from "./search/index.vue";
+// import Search from "./search/index.vue";
 import Notice from "./notice/index.vue";
 import mixNav from "./sidebar/mixNav.vue";
 import { useNav } from "@/layout/hooks/useNav";
 import Breadcrumb from "./sidebar/breadCrumb.vue";
 import topCollapse from "./sidebar/topCollapse.vue";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
-import Setting from "@iconify-icons/ri/settings-3-line";
+// import Setting from "@iconify-icons/ri/settings-3-line";
 
 const {
   layout,
   device,
   logout,
-  onPanel,
+  // onPanel,
   pureApp,
   username,
   avatarsStyle,
@@ -40,7 +40,7 @@ const {
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
-      <Search />
+      <!-- <Search /> -->
       <!-- 通知 -->
       <Notice id="header-notice" />
       <!-- 退出登录 -->
@@ -59,18 +59,18 @@ const {
                 :icon="LogoutCircleRLine"
                 style="margin: 5px"
               />
-              退出系统
+              退出登录
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <span
+      <!-- <span
         class="set-icon navbar-bg-hover"
         title="打开项目配置"
         @click="onPanel"
       >
         <IconifyIconOffline :icon="Setting" />
-      </span>
+      </span> -->
     </div>
   </div>
 </template>

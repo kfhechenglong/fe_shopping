@@ -21,7 +21,8 @@ const transitions = computed(() => {
 });
 
 const hideTabs = computed(() => {
-  return $storage?.configure.hideTabs;
+  // return $storage?.configure.hideTabs;
+  return true;
 });
 
 const layout = computed(() => {

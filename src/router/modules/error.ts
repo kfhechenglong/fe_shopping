@@ -4,7 +4,7 @@ export default {
   meta: {
     icon: "informationLine",
     title: "异常页面",
-    // showLink: false,
+    showLink: false, // 不在菜单中回显页面
     rank: 9
   },
   children: [

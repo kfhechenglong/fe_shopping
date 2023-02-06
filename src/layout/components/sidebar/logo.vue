@@ -59,7 +59,7 @@ const { title } = useNav();
       text-align: left;
       color: #1890ff;
       font-weight: 600;
-      font-size: 20px;
+      font-size: 16px;
       margin-top: 10px;
       font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
     }

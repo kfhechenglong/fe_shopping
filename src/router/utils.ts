@@ -53,6 +53,7 @@ function ascending(arr: any[]) {
 }
 
 /** 过滤meta中showLink为false的菜单 */
+// 左侧菜单只回显showLink为true的页面
 function filterTree(data: RouteComponent[]) {
   const newTree = cloneDeep(data).filter(
     (v: { meta: { showLink: boolean } }) => v.meta?.showLink !== false

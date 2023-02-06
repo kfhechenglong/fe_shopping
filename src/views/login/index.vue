@@ -11,9 +11,9 @@ import { useUserStoreHook } from "@/store/modules/user";
 import { bg, avatar, illustration } from "./utils/static";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 import { ref, reactive, toRaw, onMounted, onBeforeUnmount } from "vue";
-import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
-import dayIcon from "@/assets/svg/day.svg?component";
-import darkIcon from "@/assets/svg/dark.svg?component";
+// import { useDataThemeChange } from "@/layout/hooks/useDataThemeChange";
+// import dayIcon from "@/assets/svg/day.svg?component";
+// import darkIcon from "@/assets/svg/dark.svg?component";
 import Lock from "@iconify-icons/ri/lock-fill";
 import User from "@iconify-icons/ri/user-3-fill";
 
@@ -27,8 +27,8 @@ const ruleFormRef = ref<FormInstance>();
 const { initStorage } = useLayout();
 initStorage();
 
-const { dataTheme, dataThemeChange } = useDataThemeChange();
-dataThemeChange();
+// const { dataTheme, dataThemeChange } = useDataThemeChange();
+// dataThemeChange();
 const { title } = useNav();
 
 const ruleForm = reactive({
@@ -80,13 +80,13 @@ onBeforeUnmount(() => {
     <img :src="bg" class="wave" />
     <div class="flex-c absolute right-5 top-3">
       <!-- 主题 -->
-      <el-switch
+      <!-- <el-switch
         v-model="dataTheme"
         inline-prompt
         :active-icon="dayIcon"
         :inactive-icon="darkIcon"
         @change="dataThemeChange"
-      />
+      /> -->
     </div>
     <div class="login-container">
       <div class="img">
