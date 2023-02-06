@@ -5,7 +5,7 @@ export default {
   meta: {
     icon: "homeFilled",
     title: "系统管理",
-    rank: 0
+    rank: 7
   },
   children: [
     {
@@ -35,6 +35,33 @@ export default {
         title: "编辑用户",
         showParent: true,
         showLink: false
+      }
+    },
+    {
+      path: "/system/company",
+      name: "Company",
+      component: () => import("@/views/system/company/index.vue"),
+      meta: {
+        title: "企业信息",
+        showParent: true
+      }
+    },
+    {
+      path: "/system/menu",
+      name: "Menu",
+      component: () => import("@/views/system/menu/index.vue"),
+      meta: {
+        title: "菜单管理",
+        showParent: true
+      }
+    },
+    {
+      path: "/system/role",
+      name: "Role",
+      component: () => import("@/views/system/menu/role.vue"),
+      meta: {
+        title: "角色管理",
+        showParent: true
       }
     }
   ]
