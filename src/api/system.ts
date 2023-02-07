@@ -1,19 +1,9 @@
 import { http } from "@/utils/http";
 
-type ResultDept = {
-  success: boolean;
-  data?: Array<any>;
-};
-
-type UserReq = {
-  current: number;
-  size: number;
-};
-
 /** 获取用户管理列表 */
-export const getUserList = (data: UserReq) => {
-  return http.request("get", "/shopping/system/system-users/get/page", {
-    data
+export const getUserList = (params: any) => {
+  return http.request("get", "/shopping/system/system-users/get/page/", {
+    params
   });
 };
 
@@ -48,5 +38,5 @@ export const getRoleList = (data?: object) => {
 
 /** 获取部门管理列表 */
 export const getDeptList = (data?: object) => {
-  return http.request<ResultDept>("post", "/dept", { data });
+  return http.request("post", "/dept", { data });
 };

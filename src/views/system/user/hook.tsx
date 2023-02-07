@@ -3,8 +3,22 @@ import { message } from "@/utils/message";
 import { getUserList } from "@/api/system";
 import { ElMessageBox } from "element-plus";
 import { type PaginationProps } from "@pureadmin/table";
-import { reactive, ref, computed, onMounted } from "vue";
+import { reactive, ref, onMounted, toRaw } from "vue";
 
+export const SexOptions = [
+  {
+    label: "0",
+    value: "男"
+  },
+  {
+    label: "1",
+    value: "女"
+  },
+  {
+    label: "2",
+    value: "保密"
+  }
+];
 export function useUser() {
   const form = reactive({
     username: "",
@@ -17,8 +31,7 @@ export function useUser() {
   const pagination = reactive<PaginationProps>({
     total: 0,
     pageSize: 10,
-    currentPage: 1,
-    background: true
+    currentPage: 1
   });
   const columns: TableColumnList = [
     {
@@ -105,15 +118,6 @@ export function useUser() {
       slot: "operation"
     }
   ];
-  const buttonClass = computed(() => {
-    return [
-      "!h-[20px]",
-      "reset-margin",
-      "!text-gray-500",
-      "dark:!text-white",
-      "dark:hover:!text-primary"
-    ];
-  });
 
   function onChange({ row, index }) {
     ElMessageBox.confirm(
@@ -157,39 +161,44 @@ export function useUser() {
       });
   }
 
-  function handleUpdate(row) {
-    console.log(row);
-  }
-
-  function handleDelete(row) {
-    console.log(row);
-  }
-
-  function handleSizeChange(val: number) {
-    console.log(`${val} items per page`);
-  }
-
-  function handleCurrentChange(val: number) {
-    console.log(`current page: ${val}`);
-  }
-
-  function handleSelectionChange(val) {
-    console.log("handleSelectionChange", val);
-  }
-
-  async function onSearch() {
+  const handleSizeChange = (val: number) => {
+    pagination.pageSize = val;
+    getTableList();
+  };
+  const handleCurrentChange = (val: number) => {
+    pagination.currentPage = val;
+    getTableList();
+  };
+  const getTableList = () => {
     loading.value = true;
-    const { data } = await getUserList(form);
-    dataList.value = data.list;
-    pagination.total = data.total;
-    setTimeout(() => {
-      loading.value = false;
-    }, 500);
-  }
-
+    getUserList({
+      ...toRaw(form),
+      size: pagination.pageSize,
+      current: pagination.currentPage
+    })
+      .then(res => {
+        if (res.code === 0) {
+          message("查询成功", { type: "success" });
+          dataList.value = res.data.list;
+          pagination.total = res.data.total;
+        } else {
+          message(res.message || "查询失败", { type: "error" });
+        }
+        loading.value = false;
+      })
+      .catch(() => {
+        loading.value = false;
+      });
+  };
+  const onSearch = () => {
+    pagination.currentPage = 1;
+    getTableList();
+  };
   const resetForm = formEl => {
     if (!formEl) return;
     formEl.resetFields();
+    pagination.pageSize = 10;
+    pagination.currentPage = 1;
     onSearch();
   };
 
@@ -203,13 +212,9 @@ export function useUser() {
     columns,
     dataList,
     pagination,
-    buttonClass,
-    onSearch,
-    resetForm,
-    handleUpdate,
-    handleDelete,
     handleSizeChange,
     handleCurrentChange,
-    handleSelectionChange
+    onSearch,
+    resetForm
   };
 }
