@@ -26,7 +26,12 @@ export interface PureHttpRequestConfig extends AxiosRequestConfig {
   beforeRequestCallback?: (request: PureHttpRequestConfig) => void;
   beforeResponseCallback?: (response: PureHttpResponse) => void;
 }
-
+export interface ResponseType {
+  code: string | number,
+  message: string,
+  status: string,
+  data?: any,
+}
 export default class PureHttp {
   request<T>(
     method: RequestMethods,

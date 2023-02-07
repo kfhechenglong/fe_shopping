@@ -7,7 +7,8 @@ import {
   PureHttpError,
   RequestMethods,
   PureHttpResponse,
-  PureHttpRequestConfig
+  PureHttpRequestConfig,
+  ResponseType
 } from "./types.d";
 import { stringify } from "qs";
 import NProgress from "../progress";
@@ -146,12 +147,12 @@ class PureHttp {
   }
 
   /** 通用请求工具函数 */
-  public request<T>(
+  public request(
     method: RequestMethods,
     url: string,
     param?: AxiosRequestConfig,
     axiosConfig?: PureHttpRequestConfig
-  ): Promise<T> {
+  ): Promise<ResponseType> {
     const config = {
       method,
       url,
@@ -173,21 +174,21 @@ class PureHttp {
   }
 
   /** 单独抽离的post工具函数 */
-  public post<T, P>(
+  public post<T>(
     url: string,
     params?: AxiosRequestConfig<T>,
     config?: PureHttpRequestConfig
-  ): Promise<P> {
-    return this.request<P>("post", url, params, config);
+  ): Promise<ResponseType> {
+    return this.request("post", url, params, config);
   }
 
   /** 单独抽离的get工具函数 */
-  public get<T, P>(
+  public get<T>(
     url: string,
     params?: AxiosRequestConfig<T>,
     config?: PureHttpRequestConfig
-  ): Promise<P> {
-    return this.request<P>("get", url, params, config);
+  ): Promise<ResponseType> {
+    return this.request("get", url, params, config);
   }
 }
 
