@@ -215,7 +215,8 @@ watch(dialogVisible, value => {
     form.systemEmail = props.userInfo.systemEmail;
     form.systemMobile = props.userInfo.systemMobile;
     form.systemSex = props.userInfo.systemSex;
-    form.systemSupervisor = props.userInfo.systemSupervisor;
+    form.systemSupervisor =
+      props.userInfo.systemSupervisor === "是" ? "0" : "1";
   }
 });
 const handleClose = () => {

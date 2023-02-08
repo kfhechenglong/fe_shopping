@@ -5,6 +5,7 @@ import { message } from "@/utils/message";
 import userDialog from "./userDialog.vue";
 import userInfoEle from "./userInfo.vue";
 import { useUser } from "./hook";
+import { ElMessageBox } from "element-plus";
 // import { PureTableBar } from "@/components/RePureTableBar";
 import { useRenderIcon } from "@/components/ReIcon/src/hooks";
 
@@ -70,13 +71,29 @@ const onClickEdit = async (index: number, row: any) => {
     userDialogRef.value.dialogVisible = true;
   });
 };
-const onClickDelete = (index: number, row: any) => {
-  console.log(index, row);
-  deleteUser([row.id]).then(res => {
-    if (res.code === 0) {
-      message("操作成功", { type: "success" });
+const onClickDelete = (row: any) => {
+  ElMessageBox.confirm(
+    `确认要<strong>删除</strong><strong style='color:var(--el-color-primary)'>${row.system_username}</strong>用户吗?`,
+    "删除提示",
+    {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "warning",
+      dangerouslyUseHTMLString: true,
+      draggable: true
     }
-  });
+  )
+    .then(() => {
+      deleteUser([row.id]).then(res => {
+        if (res.code === 0) {
+          onSearch();
+          message("操作成功", { type: "success" });
+        } else {
+          message(res.message || "操作失败", { type: "error" });
+        }
+      });
+    })
+    .catch(() => {});
 };
 </script>
 
@@ -179,7 +196,7 @@ const onClickDelete = (index: number, row: any) => {
               link
               type="danger"
               size="small"
-              @click="onClickDelete(scope.$index, scope.row)"
+              @click="onClickDelete(scope.row)"
               >删除</el-button
             >
           </template>
